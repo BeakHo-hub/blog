@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>네이버 맛집 블로그 검색</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body { font-family: 'Malgun Gothic', '맑은 고딕', sans-serif; background-color: #ffffff; }
+        .container { width: 700px; margin: 50px auto; } /* 컨테이너 중앙 정렬 */
+
+        /* 검색 폼 스타일 (네이버 스타일) */
+        .search-form-wrap {
+            display: flex;
+            border: 1px solid #03c75a; /* 네이버 대표 컬러 */
+            border-radius: 40px; /* 둥근 모서리 */
+            overflow: hidden;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08); /* 은은한 그림자 */
+            height: 48px;
+        }
+        .search-input {
+            flex-grow: 1;
+            border: none;
+            padding: 0 20px;
+            font-size: 18px;
+            outline: none;
+        }
+        .search-button {
+            width: 70px;
+            background-color: #03c75a;
+            border: none;
+            color: #ffffff;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .search-button:hover {
+            background-color: #02b350;
+        }
+        .search-button i {
+            font-size: 20px;
+        }
+
+        /* 검색 결과 리스트 스타일 */
+        .results-container {
+            margin-top: 40px;
+        }
+        .result-title {
+            font-size: 22px;
+            font-weight: bold;
+            color: #000;
+        }
+        .result-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 15px;
+        }
+        .result-item {
+            padding: 15px 0;
+            border-bottom: 1px solid #f1f1f1;
+            text-align: left;
+        }
+        .item-link {
+            font-size: 16px;
+            color: #0000ff; /* 네이버 검색 결과 링크 색상 */
+            text-decoration: none;
+        }
+        .item-link:hover {
+            text-decoration: underline;
+        }
+        .item-description {
+            font-size: 14px;
+            color: #545454;
+            margin-top: 5px;
+        }
+        .item-blogger {
+            font-size: 12px;
+            color: #008000; /* 블로거 이름/날짜 색상 */
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 style="text-align:center; color:#03c75a;">🍽️ 네이버 맛집 블로그 검색</h1>
+
+        <form class="search-form-wrap" action="/" method="GET">
+            <input
+                type="text"
+                class="search-input"
+                name="query"
+                placeholder="검색할 맛집 키워드를 입력하세요 (예: 강남역 파스타 맛집)"
+                value="{{ query or '' }}"
+            >
+            <button type="submit" class="search-button">
+                <i class="fas fa-search"></i>
+            </button>
+        </form>
+
+        <div class="results-container">
+            {% if query and not results %}
+                <p style="text-align:center; color:gray;">'{{ query }}'에 대한 검색 결과가 없습니다.</p>
+            {% elif results %}
+                <p class="result-title">검색 결과 ({{ results|length }}건)</p>
+                <ul class="result-list">
+                    {% for item in results %}
+                    <li class="result-item">
+                        <a href="{{ item.link }}" target="_blank" class="item-link">{{ item.title | safe }}</a>
+                        <p class="item-description">{{ item.description | safe }}</p>
+                        <p class="item-blogger">
+                            {{ item.bloggername }} | {{ item.postdate }}
+                        </p>
+                    </li>
+                    {% endfor %}
+                </ul>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
