@@ -16,6 +16,7 @@
             overflow: hidden;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08); /* 은은한 그림자 */
             height: 48px;
+            margin-bottom: 20px;
         }
         .search-input {
             flex-grow: 1;
@@ -77,6 +78,25 @@
             color: #008000; /* 블로거 이름/날짜 색상 */
             margin-top: 5px;
         }
+        /* 랭킹 버튼 스타일 (추가) */
+        .ranking-link-wrap {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .ranking-link {
+            text-decoration: none; 
+            color: #03c75a; 
+            font-weight: bold;
+            padding: 8px 15px;
+            border: 1px solid #03c75a;
+            border-radius: 20px;
+            display: inline-block;
+            transition: background-color 0.2s, color 0.2s;
+        }
+        .ranking-link:hover {
+            background-color: #03c75a;
+            color: #fff;
+        }
     </style>
 </head>
 <body>
@@ -95,6 +115,13 @@
                 <i class="fas fa-search"></i>
             </button>
         </form>
+        
+<!-- 2. 랭킹 페이지 이동 버튼 (추가) -->
+        <div class="ranking-link-wrap">
+            <a href="/ranking" class="ranking-link">
+                🏆 실시간 검색어 순위 보기
+            </a>
+        </div>
 
         <div class="results-container">
             {% if query and not results %}
