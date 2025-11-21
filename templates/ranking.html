@@ -45,9 +45,8 @@
                 {% for item in top_keywords %}
                 <li class="rank-item">
                     <span class="rank-num">{{ loop.index }}</span>
-                    <!-- 검색어를 클릭하면 메인 페이지로 돌아가 검색이 되도록 링크 설정 -->
                     <span class="rank-keyword">
-                        <a href="/?query={{ item.keyword }}" style="text-decoration: none; color: inherit;">{{ item.keyword }}</a>
+                        <a href="/blog?query={{ item.keyword }}" style="text-decoration: none; color: inherit;">{{ item.keyword }}</a>
                     </span>
                     <span class="rank-count">({{ item.count }}회 검색)</span>
                 </li>
@@ -57,7 +56,7 @@
             {% endif %}
         </ul>
         
-        <a href="/" class="back-link">메인 검색 페이지로 돌아가기</a>
+        <a href="/" class="back-link">메인 메뉴로 돌아가기</a>
     </div>
 </body>
 </html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>가수별 차트 점유율 순위</title>
+    <style>
+        body { font-family: 'Malgun Gothic', '맑은 고딕', sans-serif; background-color: #f8f8f8; text-align: center;}
+        .container { width: 600px; margin: 50px auto; background-color: #fff; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); }
+        h1 { color: #33ccff; border-bottom: 2px solid #33ccff; padding-bottom: 10px; }
+        
+        /* 순위 목록 스타일 */
+        .rank-list { list-style: none; padding: 0; }
+        .rank-item { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 12px 15px; 
+            border-bottom: 1px solid #eee; 
+            font-size: 18px; 
+            transition: background-color 0.1s;
+        }
+        .rank-item:hover {
+            background-color: #e6f7ff; 
+        }
+        .rank-item:nth-child(1) .rank-num { color: #ffd700; font-size: 24px; } /* 1위 강조 (금색) */
+        .rank-item:nth-child(2) .rank-num { color: #c0c0c0; font-size: 22px; } /* 2위 강조 (은색) */
+        .rank-item:nth-child(3) .rank-num { color: #cd7f32; font-size: 20px; } /* 3위 강조 (동색) */
+
+        .rank-item:last-child { border-bottom: none; }
+        .rank-num { font-weight: bold; width: 40px; text-align: left; }
+        .rank-artist { flex-grow: 1; text-align: left; margin-left: 10px; font-weight: bold; }
+        .song-count { font-size: 16px; color: #0080ff; font-weight: bold; }
+        
+        /* 돌아가기 링크 스타일 */
+        .back-link { display: block; margin-top: 20px; text-decoration: none; color: #33ccff; padding: 10px; border: 1px solid #33ccff; border-radius: 5px; transition: background-color 0.2s; }
+        .back-link:hover { background-color: #33ccff; color: #fff; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>👑 가수별 차트 진입 곡 수 TOP 10</h1>
+        <p style="color: gray;">(멜론 TOP 100 기준)</p>
+        
+        <ul class="rank-list">
+            {% if top_artists %}
+                {% for item in top_artists %}
+                <li class="rank-item">
+                    <span class="rank-num">{{ loop.index }}.</span>
+                    <span class="rank-artist">{{ item.artist }}</span>
+                    <span class="song-count">{{ item.song_count }}곡</span>
+                </li>
+                {% endfor %}
+            {% else %}
+                <p style="padding: 20px;">DB에 차트 데이터가 없거나 업데이트되지 않았습니다. 멜론 차트 업데이트를 먼저 해주세요.</p>
+            {% endif %}
+        </ul>
+        
+        <a href="/" class="back-link">메인 메뉴로 돌아가기</a>
+    </div>
+</body>
+</html>

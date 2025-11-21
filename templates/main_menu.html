@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>통합 서비스 메인 메뉴</title>
+    <style>
+        body { font-family: 'Malgun Gothic', '맑은 고딕', sans-serif; background-color: #f8f8f8; text-align: center; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .menu-container { width: 500px; padding: 40px; background-color: #fff; border-radius: 15px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1); }
+        h1 { color: #03c75a; margin-bottom: 30px; font-size: 28px; }
+        .menu-list { list-style: none; padding: 0; }
+        .menu-item { margin-bottom: 20px; }
+        .menu-link {
+            display: block;
+            padding: 15px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #0080ff; 
+            border-radius: 10px;
+            transition: background-color 0.2s, transform 0.1s;
+        }
+        .menu-link:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+        }
+        
+        /* 항목별 색상 및 아이콘 */
+        .menu-item:nth-child(1) .menu-link { background-color: #03c75a; } /* 맛집 검색 */
+        .menu-item:nth-child(2) .menu-link { background-color: #ff5e00; } /* 순위 */
+        .menu-item:nth-child(3) .menu-link { background-color: #00cd3c; } /* 멜론 차트 */
+        .menu-item:nth-child(4) .menu-link { background-color: #9933cc; } /* 가수 검색 */
+        .menu-item:nth-child(5) .menu-link { background-color: #33ccff; } /* 가수별 순위 */
+    </style>
+</head>
+<body>
+    <div class="menu-container">
+        <h1>🚀 통합 서비스 메뉴</h1>
+        <ul class="menu-list">
+            <li class="menu-item">
+                <a href="/blog" class="menu-link">🍽️ 1. 맛집 블로그 검색</a>
+            </li>
+            <li class="menu-item">
+                <a href="/ranking" class="menu-link">🏆 2. 인기 검색어 순위</a>
+            </li>
+            <li class="menu-item">
+                <a href="/melon-chart" class="menu-link">🎵 3. 멜론 실시간 차트</a>
+            </li>
+            <li class="menu-item">
+                <a href="/artist-search" class="menu-link">🎤 4. 멜론 가수 곡 검색</a>
+            </li>
+            <li class="menu-item">
+                <a href="/artist-ranking" class="menu-link">👑 5. 가수별 차트 점유율</a>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>

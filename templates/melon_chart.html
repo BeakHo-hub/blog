@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>멜론 실시간 차트</title>
+    <style>
+        body { font-family: 'Malgun Gothic', '맑은 고딕', sans-serif; background-color: #ffffff; text-align: center; }
+        .container { width: 800px; margin: 50px auto; padding: 20px; border: 1px solid #eee; border-radius: 8px; box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05); }
+        h1 { color: #00cd3c; border-bottom: 2px solid #00cd3c; padding-bottom: 10px; margin-bottom: 30px; }
+        
+        /* 차트 테이블 스타일 */
+        .chart-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+        .chart-table th, .chart-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #f0f0f0;
+            vertical-align: middle;
+        }
+        .chart-table th {
+            background-color: #f7f7f7;
+            font-weight: bold;
+            color: #555;
+            font-size: 14px;
+        }
+        
+        /* 순위 번호 스타일 */
+        .rank-num {
+            font-weight: bold;
+            font-size: 16px;
+            width: 50px;
+            text-align: center;
+        }
+        /* 상위 3위 강조 */
+        .chart-table tr:nth-child(2) .rank-num,
+        .chart-table tr:nth-child(3) .rank-num,
+        .chart-table tr:nth-child(4) .rank-num {
+            color: #ff3366; 
+            font-size: 18px;
+        }
+        
+        /* 제목/아티스트 스타일 */
+        .title-col { width: 55%; font-weight: 500; color: #333; }
+        .artist-col { color: #666; font-size: 14px; }
+
+        /* 돌아가기 링크 스타일 */
+        .back-link { display: block; margin-top: 30px; text-decoration: none; color: #00cd3c; font-size: 16px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎵 멜론 실시간 차트 TOP {{ chart_list|length }}</h1>
+
+        {% if chart_list %}
+        <table class="chart-table">
+            <thead>
+                <tr>
+                    <th class="rank-num">순위</th>
+                    <th class="title-col">곡 제목</th>
+                    <th class="artist-col">아티스트</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in chart_list %}
+                <tr>
+                    <td class="rank-num">{{ item.rank }}</td>
+                    <td class="title-col">{{ item.title }}</td>
+                    <td class="artist-col">{{ item.artist }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+            <p style="padding: 30px; color: gray;">차트 데이터를 불러올 수 없습니다. (크롤링 실패 또는 서버 문제)</p>
+            
+            <div style="margin-top: 20px;">
+                <a href="/update-chart-db" style="text-decoration: none; color: white; background-color: #ff4500; padding: 10px 20px; border-radius: 5px; font-weight: bold;">
+                    데이터 수동 업데이트 시도하기
+                </a>
+            </div>
+
+        {% endif %}
+
+        <a href="/" class="back-link">메인 메뉴로 돌아가기</a>
+    </div>
+</body>
+</html>
